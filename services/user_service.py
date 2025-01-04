@@ -1,5 +1,5 @@
 from datetime import datetime
-from config.database import SessionFactory
+from config.types import SessionFactory
 from models.user import User
 
 def get_user(

@@ -1,6 +1,4 @@
-from collections.abc import Callable
 import os
-
 from sqlalchemy import Engine, create_engine, orm
 
 
@@ -18,8 +16,6 @@ DEFAULT_ENGINE = create_engine(get_database_uri())
 get_session = orm.sessionmaker(bind=DEFAULT_ENGINE)
 
 reg = orm.registry()
-
-type SessionFactory = Callable[[], orm.Session]
 
 def create_all(engine: Engine) -> None:
     reg.metadata.create_all(engine)
