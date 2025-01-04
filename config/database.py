@@ -15,7 +15,7 @@ def get_database_uri() -> str:
 
 DEFAULT_ENGINE = create_engine(get_database_uri())
 
-DEFAULT_SESSION_FACTORY = orm.sessionmaker(bind=DEFAULT_ENGINE)
+get_session = orm.sessionmaker(bind=DEFAULT_ENGINE)
 
 reg = orm.registry()
 
