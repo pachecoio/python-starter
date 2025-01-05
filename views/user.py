@@ -15,6 +15,23 @@ def find_users():
         per_page=per_page
     )
 
-    return {"users": users}
+    return users
+
+
+@bp.route("/api/users", methods=["POST"])
+def create_user():
+    data = request.get_json()
+    user = user_service.create_user(
+        get_session,
+        **data
+    )
+
+    return {
+        "name": user.name,
+        "email": user.email,
+        "created_at": user.created_at,
+        "updated_at": user.updated_at
+    }, 201
+
 
 

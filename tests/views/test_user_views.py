@@ -31,3 +31,14 @@ def test_find_users_api(client):
     response = client.get("/api/users?page=2")
     assert response.status_code == 200
     assert len(response.json["users"]) == 0
+
+
+def test_create_user_api(client):
+    data = {
+        "name": "Jon Snow",
+        "email": "jon.snow@winterfell.com",
+    }
+    response = client.post("/api/users", json=data)
+    assert response.status_code == 201
+    assert response.json["name"] == "Jon Snow"
+    assert response.json["email"] == "jon.snow@winterfell.com"
