@@ -10,5 +10,4 @@ def session_factory():
     session_factory = orm.sessionmaker(bind=engine, expire_on_commit=False)
     database.create_all(engine)
     yield session_factory
-    database.drop_all(engine)
 

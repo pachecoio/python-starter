@@ -4,7 +4,7 @@ import pytest
 def mock_session_factory(session_factory, mocker):
     return mocker.patch(
         "config.database.get_session",
-        return_value=session_factory()
+        session_factory
     )
 
 

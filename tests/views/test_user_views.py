@@ -22,15 +22,15 @@ def existing_users(session_factory):
 def test_find_users_api(client):
     response = client.get("/api/users")
     assert response.status_code == 200
-    assert len(response.json["users"]) == 2
+    assert len(response.json) == 2
 
     response = client.get("/api/users?page=1&per_page=1")
     assert response.status_code == 200
-    assert len(response.json["users"]) == 1
+    assert len(response.json) == 1
 
     response = client.get("/api/users?page=2")
     assert response.status_code == 200
-    assert len(response.json["users"]) == 0
+    assert len(response.json) == 0
 
 
 def test_create_user_api(client):

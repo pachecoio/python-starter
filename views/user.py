@@ -1,6 +1,8 @@
 from flask import Blueprint, request
 from config.database import get_session
+from schemas.user_schema import CreateUserSchema, UserSchema
 from services import user_service
+from utils.request_utils import marshal_with
 
 bp = Blueprint('user', __name__)
 
@@ -19,19 +21,15 @@ def find_users():
 
 
 @bp.route("/api/users", methods=["POST"])
-def create_user():
-    data = request.get_json()
+@marshal_with(CreateUserSchema)
+def create_user(entity: CreateUserSchema):
     user = user_service.create_user(
         get_session,
-        **data
+        **entity.model_dump()
     )
 
-    return {
-        "name": user.name,
-        "email": user.email,
-        "created_at": user.created_at,
-        "updated_at": user.updated_at
-    }, 201
+    serialized = UserSchema.model_validate(user)
+    return serialized.model_dump(), 201
 
 
 
