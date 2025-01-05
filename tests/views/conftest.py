@@ -1,16 +1,15 @@
 import pytest
 
+
 @pytest.fixture(autouse=True)
 def mock_session_factory(session_factory, mocker):
-    return mocker.patch(
-        "config.database.get_session",
-        session_factory
-    )
+    return mocker.patch("config.database.get_session", session_factory)
 
 
 @pytest.fixture
 def test_app():
     from app import create_app
+
     app = create_app()
     app.config["TESTING"] = True
     yield app

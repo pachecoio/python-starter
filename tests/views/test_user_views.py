@@ -8,12 +8,12 @@ def existing_users(session_factory):
         create_user(
             session_factory=session_factory,
             name="Daenerys Targaryen",
-            email="daenerys.targeryan.dragonstone.com"
+            email="daenerys.targeryan.dragonstone.com",
         ),
         create_user(
             session_factory=session_factory,
             name="Tyrion Lannister",
-            email="tyrion.lannister@casterly_rock.com"
+            email="tyrion.lannister@casterly_rock.com",
         ),
     ]
 

@@ -24,10 +24,9 @@ def marshal_with(model: Type[BaseModel]):
         @wraps(f)
         def decorated_function(*args, **kwargs):
             return _marshal(
-                request.get_json(),
-                model,
-                lambda entity: f(entity, *args, **kwargs)
+                request.get_json(), model, lambda entity: f(entity, *args, **kwargs)
             )
-        return decorated_function
-    return inner
 
+        return decorated_function
+
+    return inner

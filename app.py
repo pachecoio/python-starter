@@ -9,5 +9,5 @@ def create_app():
 
 def register_blueprints(app):
     from views import user
-    app.register_blueprint(user.bp)
 
+    app.register_blueprint(user.bp)

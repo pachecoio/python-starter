@@ -17,8 +17,10 @@ get_session = orm.sessionmaker(bind=DEFAULT_ENGINE)
 
 reg = orm.registry()
 
+
 def create_all(engine: Engine) -> None:
     reg.metadata.create_all(engine)
+
 
 def drop_all(engine: Engine) -> None:
     reg.metadata.drop_all(engine)

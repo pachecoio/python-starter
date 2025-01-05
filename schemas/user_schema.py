@@ -3,7 +3,6 @@ from pydantic import BaseModel, ConfigDict
 
 
 class UserSchema(BaseModel):
-
     """
     The `model_config` attribute allows you to parse this schema
     from an arbitrary class by simply using Schema.model_validate(obj)
@@ -13,6 +12,7 @@ class UserSchema(BaseModel):
     serialized_user = UserSchema.model_validate(user)
     ```
     """
+
     model_config = ConfigDict(from_attributes=True)
 
     name: str

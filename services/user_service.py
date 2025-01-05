@@ -2,12 +2,14 @@ from datetime import datetime
 from config.types import SessionFactory
 from models.user import User
 
+
 def get_user(
     session_factory: SessionFactory,
     user_id: int,
 ):
     with session_factory() as session:
         return session.query(User).get(user_id)
+
 
 def create_user(
     session_factory: SessionFactory,
@@ -36,6 +38,7 @@ def update_user(
         user.name = name
         session.commit()
         return user
+
 
 def find_users(
     session_factory: SessionFactory,
