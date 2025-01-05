@@ -17,7 +17,10 @@ def find_users():
         per_page=per_page
     )
 
-    return users
+    serialized_users = [
+        UserSchema.model_validate(user).model_dump() for user in users
+    ]
+    return serialized_users, 200
 
 
 @bp.route("/api/users", methods=["POST"])
@@ -28,8 +31,6 @@ def create_user(entity: CreateUserSchema):
         **entity.model_dump()
     )
 
-    serialized = UserSchema.model_validate(user)
-    return serialized.model_dump(), 201
-
-
+    serialized_user = UserSchema.model_validate(user)
+    return serialized_user.model_dump(), 201
 
