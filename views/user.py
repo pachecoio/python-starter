@@ -49,3 +49,14 @@ def update_user(entity: UpdateUserSchema, user_id: int):
     serialized_user = UserSchema.model_validate(user)
     return serialized_user.model_dump(), 200
 
+
+@bp.route("/api/users/<int:user_id>", methods=["DELETE"])
+def delete_user(user_id):
+    try:
+        user_service.delete_user(get_session, user_id)
+    except NotFound:
+        return {"message": "User not found"}, 404
+    except Exception as e:
+        return {"message": str(e)}, 500
+    return {}, 204
+

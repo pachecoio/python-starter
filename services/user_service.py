@@ -9,7 +9,10 @@ def get_user(
     user_id: int,
 ):
     with session_factory() as session:
-        return session.query(User).get(user_id)
+        return session.query(User).filter(
+            User.id == user_id,
+            User.deleted_at == None
+        ).one_or_none()
 
 
 def create_user(
@@ -63,7 +66,7 @@ def delete_user(
     with session_factory() as session:
         user = session.query(User).get(user_id)
         if user is None:
-            raise Exception(f"User with id {user_id} not found")
+            raise NotFound(f"User with id {user_id} not found")
         user.deleted_at = datetime.now()
         session.commit()
         return user

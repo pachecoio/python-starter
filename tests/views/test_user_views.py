@@ -78,3 +78,16 @@ def test_update_user_api(client):
         "name": "Tyrion Lannister",
     })
     assert response.status_code == 404
+
+def test_delete_user_api(client):
+    response = client.post("/api/users", json={
+        "name": "Bran Stark",
+        "email": "bran.start@winterfell.com",
+    })
+    id = response.json["id"]
+
+    response = client.delete(f"/api/users/{id}")
+    assert response.status_code == 204
+
+    response = client.get(f"/api/users/{id}")
+    assert response.status_code == 404
