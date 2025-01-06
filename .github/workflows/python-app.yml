@@ -26,6 +26,6 @@ jobs:
       - name: "Check lint"
         run: uv tool run ruff check
       - name: "Check format"
-        run: uv tool run ruff format check
+        run: uv tool run ruff format --check
       - name: "Run tests"
         run: uv run pytest tests
