@@ -9,10 +9,14 @@ def get_user(
     user_id: int,
 ):
     with session_factory() as session:
-        return session.query(User).filter(
-            User.id == user_id,
-            User.deleted_at == None # noqa
-        ).one_or_none()
+        return (
+            session.query(User)
+            .filter(
+                User.id == user_id,
+                User.deleted_at == None,  # noqa
+            )
+            .one_or_none()
+        )
 
 
 def create_user(
@@ -52,7 +56,7 @@ def find_users(
     with session_factory() as session:
         return (
             session.query(User)
-            .filter(User.deleted_at == None) # noqa
+            .filter(User.deleted_at == None)  # noqa
             .limit(per_page)
             .offset((page - 1) * per_page)
             .all()

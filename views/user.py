@@ -59,4 +59,3 @@ def delete_user(user_id):
     except Exception as e:
         return {"message": str(e)}, 500
     return {}, 204
-

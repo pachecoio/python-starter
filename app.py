@@ -16,7 +16,6 @@ def register_blueprints(app):
 
 
 def register_error_handlers(app):
-
     @app.errorhandler(HTTPException)
     def handle_http_exception(e):
         return {"message": e.description}, e.code
@@ -27,4 +26,3 @@ def register_error_handlers(app):
 
     app.register_error_handler(HTTPException, handle_http_exception)
     app.register_error_handler(Exception, handle_exception)
-
