@@ -1,6 +1,7 @@
 from datetime import datetime
 from config.types import SessionFactory
 from models.user import User
+from werkzeug.exceptions import NotFound
 
 
 def get_user(
@@ -34,7 +35,7 @@ def update_user(
     with session_factory() as session:
         user = session.query(User).get(user_id)
         if user is None:
-            raise Exception(f"User with id {user_id} not found")
+            raise NotFound(f"User with id {user_id} not found")
         user.name = name
         session.commit()
         return user

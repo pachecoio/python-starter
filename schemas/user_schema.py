@@ -15,6 +15,7 @@ class UserSchema(BaseModel):
 
     model_config = ConfigDict(from_attributes=True)
 
+    id: int
     name: str
     email: str
     created_at: datetime
@@ -24,3 +25,7 @@ class UserSchema(BaseModel):
 class CreateUserSchema(BaseModel):
     name: str
     email: str
+
+
+class UpdateUserSchema(BaseModel):
+    name: str
