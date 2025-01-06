@@ -8,6 +8,7 @@ It includes a project structure, a crud API example, and a Dockerfile for contai
 - [Flask](https://flask.palletsprojects.com/en/1.1.x/) - A micro web framework written in Python.
 - [SQLAlchemy](https://www.sqlalchemy.org/) - A SQL toolkit and Object-Relational Mapping (ORM) library for Python.
 - [Pydantic](https://pydantic-docs.helpmanual.io/) - Data validation and settings management using Python type annotations.
+- [Alembic](https://alembic.sqlalchemy.org/en/latest/) - A lightweight database migration tool for SQLAlchemy.
 
 ## Getting started
 
@@ -33,4 +34,10 @@ docker compose up
 
 ```bash
 uv run python main.py
+```
+
+### Running the migrations
+
+```bash
+uv run alembic upgrade head
 ```
